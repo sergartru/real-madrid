@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Palmarés — Real Madrid CF</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Barlow+Condensed:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .trofeo-card {
+      background: rgba(13,27,62,.6);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      overflow: hidden;
+      text-align: center;
+      transition: background .2s, transform .2s;
+    }
+
+    .trofeo-card:hover {
+      background: rgba(201,168,76,.1);
+      transform: translateY(-3px);
+    }
+
+    .trofeo-card .copa-img {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      overflow: hidden;
+      background: rgba(255,255,255,.04);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .trofeo-card .copa-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform .35s ease;
+    }
+
+    .trofeo-card:hover .copa-img img { transform: scale(1.06); }
+
+    .trofeo-card .copa-img img.error-img { display: none; }
+
+    .trofeo-card .copa-img .copa-fallback {
+      font-size: 52px;
+      opacity: .2;
+      display: none;
+    }
+
+    .trofeo-card .copa-img img.error-img + .copa-fallback { display: block; }
+
+    .trofeo-card .copa-info {
+      padding: 16px 12px 20px;
+    }
+
+    .trofeo-card .big-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 52px;
+      color: var(--gold);
+      line-height: 1;
+    }
+
+    .trofeo-card .trofeo-nom {
+      font-size: 13px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-top: 6px;
+      opacity: .8;
+    }
+  </style>
+</head>
+<body>
+
+<div class="page-bg"></div>
+<div class="grid-bg"></div>
+
+<header>
+  <a href="index.html" class="logo-wrap">
+    <span class="escudo">⚽</span>
+    <span class="club-name">Real Madrid</span>
+  </a>
+  <nav>
+    <a href="index.html">Inicio</a>
+    <a href="tienda.html">Tienda</a>
+    <a href="palmares.html" class="active">Palmarés</a>
+    <a href="entradas.html">Entradas</a>
+    <a href="jugadores.html">Jugadores</a>
+  </nav>
+  <span id="clock"></span>
+</header>
+
+<main>
+  <h2 class="sec-title">Palmarés</h2>
+  <p class="sec-sub">Títulos conquistados desde 1902</p>
+
+  <div class="trofeos-grid">
+
+    <div class="trofeo-card">
+      <div class="copa-img">
+        <img src="copa-champions.jpg" alt="Trofeo Champions League Real Madrid" onerror="this.classList.add('error-img')">
+        <span class="copa-fallback">🏆</span>
+      </div>
+      <div class="copa-info">
+        <div class="big-num">15</div>
+        <div class="trofeo-nom">Champions League</div>
+      </div>
+    </div>
+
+    <div class="trofeo-card">
+      <div class="copa-img">
+        <img src="copa-liga.jpg" alt="Trofeo Liga Española Real Madrid" onerror="this.classList.add('error-img')">
+        <span class="copa-fallback">🥇</span>
+      </div>
+      <div class="copa-info">
+        <div class="big-num">36</div>
+        <div class="trofeo-nom">Liga Española</div>
+      </div>
+    </div>
+
+    <div class="trofeo-card">
+      <div class="copa-img">
+        <img src="copa-rey.jpg" alt="Trofeo Copa del Rey Real Madrid" onerror="this.classList.add('error-img')">
+        <span class="copa-fallback">🏅</span>
+      </div>
+      <div class="copa-info">
+        <div class="big-num">20</div>
+        <div class="trofeo-nom">Copa del Rey</div>
+      </div>
+    </div>
+
+    <div class="trofeo-card">
+      <div class="copa-img">
+        <img src="copa-mundial.jpg" alt="Trofeo Mundial de Clubes Real Madrid" onerror="this.classList.add('error-img')">
+        <span class="copa-fallback">🌍</span>
+      </div>
+      <div class="copa-info">
+        <div class="big-num">8</div>
+        <div class="trofeo-nom">Mundial de Clubes</div>
+      </div>
+    </div>
+
+    <div class="trofeo-card">
+      <div class="copa-img">
+        <img src="copa-supercopa-esp.jpg" alt="Trofeo Supercopa de España Real Madrid" onerror="this.classList.add('error-img')">
+        <span class="copa-fallback">⭐</span>
+      </div>
+      <div class="copa-info">
+        <div class="big-num">13</div>
+        <div class="trofeo-nom">Supercopa de España</div>
+      </div>
+    </div>
+
+    <div class="trofeo-card">
+      <div class="copa-img">
+        <img src="copa-supercopa-eur.jpg" alt="Trofeo Supercopa de Europa Real Madrid" onerror="this.classList.add('error-img')">
+        <span class="copa-fallback">🌟</span>
+      </div>
+      <div class="copa-info">
+        <div class="big-num">5</div>
+        <div class="trofeo-nom">Supercopa de Europa</div>
+      </div>
+    </div>
+
+  </div>
+
+  <h3 style="font-family:'Playfair Display',serif;font-size:20px;color:var(--gold2);letter-spacing:1px;margin:40px 0 20px;">Champions League recientes</h3>
+  <div class="timeline">
+    <div class="tl-item">
+      <div class="tl-year">2024</div>
+      <div class="tl-desc">Champions League — Final vs Borussia Dortmund (2-0) · Wembley</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-year">2024</div>
+      <div class="tl-desc">Liga — Campeones de LaLiga EA Sports</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-year">2022</div>
+      <div class="tl-desc">Champions League — Final vs Liverpool (1-0) · París</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-year">2022</div>
+      <div class="tl-desc">Liga — Campeones de LaLiga Santander</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-year">2018</div>
+      <div class="tl-desc">Champions League — Final vs Liverpool · 3ª consecutiva · Kiev</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-year">2017</div>
+      <div class="tl-desc">Champions League — Final vs Juventus (4-1) · Cardiff</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-year">2016</div>
+      <div class="tl-desc">Champions League — Final vs Atlético de Madrid (penaltis) · Milán</div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <span>Real Madrid Club de Fútbol — Fundado en 1902</span>
+  <span>TEMPORADA 2025/26</span>
+</footer>
+
+<script>
+  function tick() {
+    const t = new Date().toLocaleTimeString('es-ES', { hour:'2-digit', minute:'2-digit', second:'2-digit' });
+    document.getElementById('clock').textContent = t;
+  }
+  tick(); setInterval(tick, 1000);
+</script>
+
+</body>
+</html>

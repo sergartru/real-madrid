@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Real Madrid CF</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Barlow+Condensed:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="page-bg"></div>
+<div class="grid-bg"></div>
+
+<header>
+  <a href="index.html" class="logo-wrap">
+   <img src="madrid.png" alt="Escudo Real Madrid" style="height:36px;">
+    <span class="club-name">Real Madrid</span>
+  </a>
+  <nav>
+    <a href="index.html" class="active">Inicio</a>
+    <a href="tienda.html">Tienda</a>
+    <a href="palmares.html">Palmarés</a>
+    <a href="entradas.html">Entradas</a>
+    <a href="jugadores.html">Jugadores</a>
+  </nav>
+  <span id="clock"></span>
+</header>
+
+<main>
+  <div class="home-hero">
+    <div class="escudo-big">🏆</div>
+    <h1>Real <span>Madrid</span></h1>
+    <p>El club más laureado de la historia del fútbol mundial</p>
+    <audio controls autoplay loop>
+      <source src="himno.mp3" type="audio/mpeg">
+      Tu navegador no soporta audio HTML5.
+    </audio>
+    <div class="home-links">
+      <a href="jugadores.html" class="btn-gold">Ver Plantilla 2025/26</a>
+      <a href="entradas.html" class="btn-gold">Comprar Entradas</a>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <span>Real Madrid Club de Fútbol — Fundado en 1902</span>
+  <span id="footer-clock"></span>
+</footer>
+
+<script>
+  function tick() {
+    const t = new Date().toLocaleTimeString('es-ES', { hour:'2-digit', minute:'2-digit', second:'2-digit' });
+    document.getElementById('clock').textContent = t;
+    document.getElementById('footer-clock').textContent = 'TEMPORADA 2025/26';
+  }
+  tick();
+  setInterval(tick, 1000);
+</script>
+
+</body>
+</html>

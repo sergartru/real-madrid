@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jugadores — Real Madrid CF</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Barlow+Condensed:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="page-bg"></div>
+<div class="grid-bg"></div>
+
+<header>
+  <a href="index.html" class="logo-wrap">
+    <img src="madrid.png" alt="Escudo Real Madrid" style="height:36px;">
+    <span class="club-name">Real Madrid</span>
+  </a>
+  <nav>
+    <a href="index.html">Inicio</a>
+    <a href="tienda.html">Tienda</a>
+    <a href="palmares.html">Palmarés</a>
+    <a href="entradas.html">Entradas</a>
+    <a href="jugadores.html" class="active">Jugadores</a>
+  </nav>
+  <span id="clock"></span>
+</header>
+
+<main>
+  <h2 class="sec-title">Plantilla 2025/26</h2>
+  <p class="sec-sub">Primera plantilla · Temporada actual · Entrenador: Xabi Alonso</p>
+
+  <div class="tabs">
+    <button class="tab active" onclick="filtrar('todos', this)">Todos</button>
+    <button class="tab" onclick="filtrar('portero', this)">Porteros</button>
+    <button class="tab" onclick="filtrar('defensa', this)">Defensas</button>
+    <button class="tab" onclick="filtrar('centrocampista', this)">Centrocampistas</button>
+    <button class="tab" onclick="filtrar('delantero', this)">Delanteros</button>
+  </div>
+
+  <div class="jugadores-grid" id="jugadores-grid"></div>
+</main>
+
+<!-- TOOLTIP -->
+<div class="tooltip" id="tooltip">
+  <div class="tooltip-header">
+    <div class="tooltip-num" id="tt-num"></div>
+    <div>
+      <div class="tooltip-nombre" id="tt-nombre"></div>
+      <div class="tooltip-nac"    id="tt-nac"></div>
+    </div>
+  </div>
+  <div class="tooltip-fila">
+    <span class="tooltip-label">Edad</span>
+    <span class="tooltip-valor" id="tt-edad"></span>
+  </div>
+  <div class="tooltip-fila">
+    <span class="tooltip-label">Posición</span>
+    <span class="tooltip-valor" id="tt-pos"></span>
+  </div>
+  <div class="tooltip-fila">
+    <span class="tooltip-label">País</span>
+    <span class="tooltip-valor" id="tt-pais"></span>
+  </div>
+  <div class="tooltip-bio" id="tt-bio"></div>
+</div>
+
+<footer>
+  <span>Real Madrid Club de Fútbol — Fundado en 1902</span>
+  <span>TEMPORADA 2025/26</span>
+</footer>
+
+<script>
+const jugadores = [
+  { num:1,  nom:'Courtois',         pos:'portero',        nac:'🇧🇪', pais:'Bélgica',    edad:33, bio:'Portero titular y uno de los mejores del mundo. Figura clave en la Champions 2021/22 con una actuación histórica en la final.' },
+  { num:13, nom:'Lunin',            pos:'portero',        nac:'🇺🇦', pais:'Ucrania',    edad:25, bio:'Segundo portero. Salvó al Madrid en la Champions 2023/24 parando penaltis decisivos ante el Manchester City y el Bayern.' },
+  { num:2,  nom:'Carvajal',         pos:'defensa',        nac:'🇪🇸', pais:'España',     edad:33, bio:'Lateral derecho histórico del club. Ganador de múltiples Champions con el Madrid. Volvió tras una grave lesión de rodilla.' },
+  { num:3,  nom:'Militão',          pos:'defensa',        nac:'🇧🇷', pais:'Brasil',     edad:27, bio:'Central potente y seguro. Forma junto a Rüdiger la pareja central titular. Se recuperó de una rotura de ligamentos en 2023.' },
+  { num:4,  nom:'Alaba',            pos:'defensa',        nac:'🇦🇹', pais:'Austria',    edad:33, bio:'Central versátil y zurdo. También se recupera de una grave lesión de rodilla sufrida en diciembre de 2023.' },
+  { num:17, nom:'Raúl Asencio',     pos:'defensa',        nac:'🇪🇸', pais:'España',     edad:21, bio:'Joven central de la cantera madridista. Debutó en el primer equipo cubriendo las bajas de Militão y Alaba con gran nivel.' },
+  { num:20, nom:'Fran García',      pos:'defensa',        nac:'🇪🇸', pais:'España',     edad:25, bio:'Lateral izquierdo canterano. Regresó al Madrid tras su etapa en el Rayo Vallecano para cubrir el puesto de Mendy.' },
+  { num:22, nom:'Rüdiger',          pos:'defensa',        nac:'🇩🇪', pais:'Alemania',   edad:32, bio:'Central dominador en el juego aéreo y uno de los líderes defensivos. Fichó libre del Chelsea en 2022.' },
+  { num:23, nom:'Mendy',            pos:'defensa',        nac:'🇫🇷', pais:'Francia',    edad:30, bio:'Lateral izquierdo con gran proyección ofensiva. Ha sufrido varias lesiones que le han impedido tener continuidad.' },
+  { num:24, nom:'Dean Huijsen',     pos:'defensa',        nac:'🇳🇱', pais:'Holanda',    edad:19, bio:'Joven central holandés fichado en el verano de 2025. Llegó tras destacar en la Premier League. Gran futuro por delante.' },
+  { num:18, nom:'Álvaro Carreras',  pos:'defensa',        nac:'🇪🇸', pais:'España',     edad:23, bio:'Lateral izquierdo canterano del Benfica. Fichado en 2025 como alternativa por la banda izquierda.' },
+  { num:12, nom:'Alexander-Arnold', pos:'defensa',        nac:'🇬🇧', pais:'Inglaterra', edad:26, bio:'Lateral derecho con mentalidad de centrocampista. Llegó libre del Liverpool en 2025. Uno de los mejores asistentes del mundo.' },
+  { num:5,  nom:'Bellingham',       pos:'centrocampista', nac:'🇬🇧', pais:'Inglaterra', edad:22, bio:'Mediocampista total. Llegó del Dortmund en 2023 y arrasó en su primera temporada con 23 goles. Renovado hasta 2029.' },
+  { num:6,  nom:'Camavinga',        pos:'centrocampista', nac:'🇫🇷', pais:'Francia',    edad:22, bio:'Centrocampista dinámico y elegante. Fichado con 18 años del Stade Rennais. Especialista en grandes noches europeas.' },
+  { num:8,  nom:'Valverde',         pos:'centrocampista', nac:'🇺🇾', pais:'Uruguay',    edad:27, bio:'Motor del mediocampo. Su capacidad física y goles desde segunda línea le han convertido en indiscutible para Xabi Alonso.' },
+  { num:14, nom:'Tchouaméni',       pos:'centrocampista', nac:'🇫🇷', pais:'Francia',    edad:25, bio:'Pivote defensivo con gran presencia física. Llegó del Mónaco en 2022. Ha madurado mucho y es pieza clave en el once.' },
+  { num:15, nom:'Arda Güler',       pos:'centrocampista', nac:'🇹🇷', pais:'Turquía',    edad:20, bio:'Joya turca con enorme calidad técnica. Fichado del Fenerbahçe en 2023. Destaca por su regate, visión de juego y disparo.' },
+  { num:19, nom:'Ceballos',         pos:'centrocampista', nac:'🇪🇸', pais:'España',     edad:29, bio:'Centrocampista técnico de la cantera del Betis. Renovó su contrato para aportar experiencia y calidad al equipo.' },
+  { num:30, nom:'Mastantuono',      pos:'centrocampista', nac:'🇦🇷', pais:'Argentina',  edad:17, bio:'Joya argentina del River Plate. Fichaje estrella del verano 2025. Se le compara con Messi por su calidad y visión de juego.' },
+  { num:7,  nom:'Vinícius Jr.',     pos:'delantero',      nac:'🇧🇷', pais:'Brasil',     edad:25, bio:'Extremo zurdo explosivo y desequilibrante. Balón de Oro 2024. Es el referente ofensivo del Madrid en los últimos años.' },
+  { num:9,  nom:'Endrick',          pos:'delantero',      nac:'🇧🇷', pais:'Brasil',     edad:19, bio:'Delantero centro llegado del Palmeiras en 2024. Físico poderoso para su edad. Promesa del fútbol mundial.' },
+  { num:10, nom:'Mbappé',           pos:'delantero',      nac:'🇫🇷', pais:'Francia',    edad:26, bio:'Delantero más rápido del mundo. Llegó libre del PSG en 2024 cumpliendo su sueño de infancia. Máximo goleador del equipo.' },
+  { num:11, nom:'Rodrygo',          pos:'delantero',      nac:'🇧🇷', pais:'Brasil',     edad:24, bio:'Extremo polivalente con gran olfato goleador. Hombre para las grandes noches europeas. Renovó hasta 2028.' },
+  { num:21, nom:'Brahim Díaz',      pos:'delantero',      nac:'🇪🇸', pais:'España',     edad:26, bio:'Mediapunta con gran creatividad. Tras su etapa en el Milan regresó al Madrid y se ha ganado la titularidad.' },
+];
+
+const posNombre = { portero:'Portero', defensa:'Defensa', centrocampista:'Centrocampista', delantero:'Delantero' };
+
+function renderJugadores(lista) {
+  const g = document.getElementById('jugadores-grid');
+  g.innerHTML = lista.map(j => `
+    <div class="jugador-card"
+      onmouseenter="mostrarTooltip(event, ${j.num})"
+      onmousemove="moverTooltip(event)"
+      onmouseleave="ocultarTooltip()">
+      <div class="jugador-num">${j.num}</div>
+      <div class="jugador-nombre">${j.nom}</div>
+      <div class="jugador-pos">${j.pos}</div>
+      <div class="jugador-nac">${j.nac}</div>
+    </div>`).join('');
+}
+renderJugadores(jugadores);
+
+function filtrar(pos, btn) {
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  btn.classList.add('active');
+  renderJugadores(pos === 'todos' ? jugadores : jugadores.filter(j => j.pos === pos));
+}
+
+const tt = document.getElementById('tooltip');
+let ttVisible = false;
+
+function mostrarTooltip(e, num) {
+  const j = jugadores.find(x => x.num === num);
+  if (!j) return;
+  document.getElementById('tt-num').textContent    = j.num;
+  document.getElementById('tt-nombre').textContent = j.nom;
+  document.getElementById('tt-nac').textContent    = j.nac + ' ' + j.pais;
+  document.getElementById('tt-edad').textContent   = j.edad + ' años';
+  document.getElementById('tt-pos').textContent    = posNombre[j.pos] || j.pos;
+  document.getElementById('tt-pais').textContent   = j.pais;
+  document.getElementById('tt-bio').textContent    = j.bio;
+  posicionarTooltip(e);
+  tt.classList.add('visible');
+  ttVisible = true;
+}
+
+function moverTooltip(e) {
+  if (ttVisible) posicionarTooltip(e);
+}
+
+function posicionarTooltip(e) {
+  const margen = 16, tw = 230, th = 200;
+  let x = e.clientX + margen;
+  let y = e.clientY + margen;
+  if (x + tw > window.innerWidth  - margen) x = e.clientX - tw - margen;
+  if (y + th > window.innerHeight - margen) y = e.clientY - th - margen;
+  tt.style.left = x + 'px';
+  tt.style.top  = y + 'px';
+}
+
+function ocultarTooltip() {
+  tt.classList.remove('visible');
+  ttVisible = false;
+}
+
+function tick() {
+  const t = new Date().toLocaleTimeString('es-ES', { hour:'2-digit', minute:'2-digit', second:'2-digit' });
+  document.getElementById('clock').textContent = t;
+}
+tick(); setInterval(tick, 1000);
+</script>
+
+</body>
+</html>

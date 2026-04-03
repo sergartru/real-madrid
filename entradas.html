@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Entradas — Real Madrid CF</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Barlow+Condensed:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .entradas-wrap {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      max-width: 900px;
+    }
+
+    @media (max-width: 700px) {
+      .entradas-wrap { grid-template-columns: 1fr; }
+    }
+
+    /* Partidos */
+    .partido-card {
+      background: rgba(13,27,62,.6);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      overflow: hidden;
+      margin-bottom: 16px;
+      transition: border-color .2s;
+    }
+    .partido-card:hover { border-color: rgba(201,168,76,.6); }
+
+    .partido-header {
+      background: linear-gradient(90deg, rgba(201,168,76,.18) 0%, transparent);
+      padding: 14px 18px;
+      border-bottom: 1px solid var(--border);
+    }
+    .partido-header .comp {
+      font-size: 11px;
+      letter-spacing: 2px;
+      color: var(--gold);
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+    .partido-header h3 { font-size: 16px; }
+
+    .partido-body {
+      padding: 14px 18px;
+      font-size: 13px;
+      opacity: .65;
+      line-height: 2;
+    }
+
+    /* Formulario */
+    .form-simple {
+      background: rgba(13,27,62,.6);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 28px 24px;
+    }
+
+    .form-simple h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 20px;
+      color: var(--gold2);
+      margin-bottom: 22px;
+    }
+
+    .campo {
+      margin-bottom: 16px;
+    }
+
+    .campo label {
+      display: block;
+      font-size: 11px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      opacity: .45;
+      margin-bottom: 6px;
+    }
+
+    .campo input[type="text"],
+    .campo input[type="email"],
+    .campo select {
+      width: 100%;
+      background: rgba(255,255,255,.05);
+      border: 1px solid var(--border);
+      border-radius: 2px;
+      color: var(--white);
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 15px;
+      padding: 9px 12px;
+      outline: none;
+      transition: border-color .2s;
+    }
+
+    .campo input:focus,
+    .campo select:focus {
+      border-color: var(--gold);
+    }
+
+    .campo select {
+      cursor: pointer;
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23C9A84C' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 12px center;
+      padding-right: 32px;
+    }
+
+    .campo select option { background: #0D1B3E; }
+
+    /* Radio y check inline */
+    .opciones {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 4px;
+    }
+
+    .opciones label {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      font-size: 14px;
+      letter-spacing: .3px;
+      opacity: 1;
+      cursor: pointer;
+      text-transform: none;
+      padding: 7px 12px;
+      border: 1px solid var(--border);
+      border-radius: 2px;
+      transition: border-color .2s, background .2s;
+    }
+
+    .opciones label:hover {
+      border-color: rgba(201,168,76,.5);
+      background: rgba(201,168,76,.07);
+    }
+
+    .opciones input { accent-color: var(--gold); cursor: pointer; }
+
+    .linea {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 18px 0;
+    }
+
+    .aviso {
+      display: none;
+      margin-top: 16px;
+      padding: 14px 16px;
+      background: rgba(201,168,76,.1);
+      border: 1px solid var(--gold);
+      border-radius: 4px;
+      font-size: 14px;
+      color: var(--gold2);
+      text-align: center;
+      letter-spacing: .5px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="page-bg"></div>
+<div class="grid-bg"></div>
+
+<header>
+  <a href="index.html" class="logo-wrap">
+    <img src="madrid.png" alt="Escudo Real Madrid" style="height:36px;">
+    <span class="club-name">Real Madrid</span>
+  </a>
+  <nav>
+    <a href="index.html">Inicio</a>
+    <a href="tienda.html">Tienda</a>
+    <a href="palmares.html">Palmarés</a>
+    <a href="entradas.html" class="active">Entradas</a>
+    <a href="jugadores.html">Jugadores</a>
+  </nav>
+  <span id="clock"></span>
+</header>
+
+<main>
+  <h2 class="sec-title">Entradas</h2>
+  <p class="sec-sub">Temporada 2025/26 · Santiago Bernabéu</p>
+
+  <div class="entradas-wrap">
+
+    <!-- PARTIDOS -->
+    <section>
+      <div class="partido-card">
+        <div class="partido-header">
+          <div class="comp">LaLiga EA Sports</div>
+          <h3>Real Madrid vs FC Barcelona</h3>
+        </div>
+        <div class="partido-body">
+          📅 Por confirmar · 21:00 h<br>
+          🏟 Santiago Bernabéu<br>
+          🎟 Fondos 55 € · Tribuna 90 € · Preferente 150 €
+        </div>
+      </div>
+
+      <div class="partido-card">
+        <div class="partido-header">
+          <div class="comp">Champions League</div>
+          <h3>Real Madrid vs Rival europeo</h3>
+        </div>
+        <div class="partido-body">
+          📅 Fase de grupos · 2025/26<br>
+          🏟 Santiago Bernabéu<br>
+          🎟 Fondos 80 € · Tribuna 120 € · VIP 300 €
+        </div>
+      </div>
+
+      <div class="partido-card">
+        <div class="partido-header">
+          <div class="comp">LaLiga EA Sports</div>
+          <h3>Real Madrid vs Atlético de Madrid</h3>
+        </div>
+        <div class="partido-body">
+          📅 Por confirmar · 20:00 h<br>
+          🏟 Santiago Bernabéu<br>
+          🎟 Fondos 50 € · Tribuna 80 € · Preferente 130 €
+        </div>
+      </div>
+    </section>
+
+    <!-- FORMULARIO SIMPLE -->
+    <section>
+      <div class="form-simple">
+        <h3>Reservar entrada</h3>
+
+        <form onsubmit="reservar(event)">
+
+          <div class="campo">
+            <label for="nombre">Nombre</label>
+            <input type="text" id="nombre" placeholder="Tu nombre completo">
+          </div>
+
+          <div class="campo">
+            <label for="email">Email</label>
+            <input type="text" id="email" placeholder="correo@ejemplo.com">
+          </div>
+
+          <hr class="linea">
+
+          <div class="campo">
+            <label for="partido">Partido</label>
+            <select id="partido">
+              <option value="" disabled selected>Elige un partido</option>
+              <option>Real Madrid vs FC Barcelona</option>
+              <option>Real Madrid · Champions League</option>
+              <option>Real Madrid vs Atlético de Madrid</option>
+            </select>
+          </div>
+
+          <hr class="linea">
+
+          <div class="campo">
+            <label>Zona</label>
+            <div class="opciones">
+              <label><input type="radio" name="zona" value="fondos" checked> Fondos</label>
+              <label><input type="radio" name="zona" value="tribuna"> Tribuna</label>
+              <label><input type="radio" name="zona" value="preferente"> Preferente</label>
+              <label><input type="radio" name="zona" value="vip"> VIP</label>
+            </div>
+          </div>
+
+          <hr class="linea">
+
+          <div class="campo">
+            <label>Extras</label>
+            <div class="opciones">
+              <label><input type="checkbox" value="programa"> Programa (+5 €)</label>
+              <label><input type="checkbox" value="parking"> Parking (+15 €)</label>
+              <label><input type="checkbox" value="museo"> Museo (+12 €)</label>
+            </div>
+          </div>
+
+          <hr class="linea">
+
+          <button type="submit" class="btn-gold" style="width:100%">Reservar</button>
+
+        </form>
+
+        <div class="aviso" id="aviso">
+          ✅ ¡Reserva recibida! Te escribimos al correo.
+        </div>
+
+      </div>
+    </section>
+
+  </div>
+</main>
+
+<footer>
+  <span>Real Madrid Club de Fútbol — Fundado en 1902</span>
+  <span>TEMPORADA 2025/26</span>
+</footer>
+
+<script>
+  function reservar(e) {
+    e.preventDefault();
+    e.target.style.display = 'none';
+    document.getElementById('aviso').style.display = 'block';
+  }
+
+  function tick() {
+    const t = new Date().toLocaleTimeString('es-ES', { hour:'2-digit', minute:'2-digit', second:'2-digit' });
+    document.getElementById('clock').textContent = t;
+  }
+  tick(); setInterval(tick, 1000);
+</script>
+
+</body>
+</html>

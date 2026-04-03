@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tienda Oficial — Real Madrid CF</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Barlow+Condensed:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="page-bg"></div>
+<div class="grid-bg"></div>
+
+<header>
+  <a href="index.html" class="logo-wrap">
+    <img src="madrid.png" alt="Escudo Real Madrid" style="height:36px;">
+    <span class="club-name">Real Madrid</span>
+  </a>
+  <nav>
+    <a href="index.html">Inicio</a>
+    <a href="tienda.html" class="active">Tienda</a>
+    <a href="palmares.html">Palmarés</a>
+    <a href="entradas.html">Entradas</a>
+    <a href="jugadores.html">Jugadores</a>
+  </nav>
+  <span id="clock"></span>
+</header>
+
+<main>
+  <h2 class="sec-title">Tienda Oficial</h2>
+  <p class="sec-sub">Equipación 2025/26 — Temporada actual</p>
+
+  <div class="tienda-grid">
+
+    <article class="tienda-card">
+      <div class="img-wrap">
+        <img src="camiseta1.jpg" alt="Camiseta primera equipación Real Madrid 2025/26 blanca" onerror="this.classList.add('error-img')">
+        <span class="img-fallback">🎽</span>
+      </div>
+      <div class="info">
+        <h3>Camiseta 1ª Equipación</h3>
+        <p>Manga corta · Blanco clásico</p>
+        <div class="precio">95 €</div>
+      </div>
+    </article>
+
+    <article class="tienda-card">
+      <div class="img-wrap">
+        <img src="camiseta2.jpg" alt="Camiseta segunda equipación Real Madrid 2025/26 alternativa" onerror="this.classList.add('error-img')">
+        <span class="img-fallback">🎽</span>
+      </div>
+      <div class="info">
+        <h3>Camiseta 2ª Equipación</h3>
+        <p>Manga corta · Alternativa</p>
+        <div class="precio">95 €</div>
+      </div>
+    </article>
+
+    <article class="tienda-card">
+      <div class="img-wrap">
+        <img src="camiseta3.jpg" alt="Camiseta tercera equipación Real Madrid 2025/26 edición especial" onerror="this.classList.add('error-img')">
+        <span class="img-fallback">🎽</span>
+      </div>
+      <div class="info">
+        <h3>Camiseta 3ª Equipación</h3>
+        <p>Edición especial</p>
+        <div class="precio">95 €</div>
+      </div>
+    </article>
+
+    <article class="tienda-card">
+      <div class="img-wrap">
+        <img src="sudadera.jpg" alt="Sudadera de entrenamiento oficial Real Madrid con capucha" onerror="this.classList.add('error-img')">
+        <span class="img-fallback">🧥</span>
+      </div>
+      <div class="info">
+        <h3>Sudadera Entrenamiento</h3>
+        <p>Capucha · Tejido técnico</p>
+        <div class="precio">75 €</div>
+      </div>
+    </article>
+
+    <article class="tienda-card">
+      <div class="img-wrap">
+        <img src="pantalon.jpg" alt="Pantalón corto oficial Real Madrid blanco temporada 2025/26" onerror="this.classList.add('error-img')">
+        <span class="img-fallback">👖</span>
+      </div>
+      <div class="info">
+        <h3>Pantalón Corto Oficial</h3>
+        <p>Hombre · Blanco</p>
+        <div class="precio">42 €</div>
+      </div>
+    </article>
+
+    <article class="tienda-card">
+      <div class="img-wrap">
+        <img src="gorra.jpg" alt="Gorra oficial Real Madrid ajustable con logo bordado" onerror="this.classList.add('error-img')">
+        <span class="img-fallback">🧢</span>
+      </div>
+      <div class="info">
+        <h3>Gorra Oficial</h3>
+        <p>Ajustable · Logo bordado</p>
+        <div class="precio">28 €</div>
+      </div>
+    </article>
+
+    <article class="tienda-card">
+      <div class="img-wrap">
+        <img src="mochila.jpg" alt="Mochila oficial Real Madrid 25 litros con logo lateral" onerror="this.classList.add('error-img')">
+        <span class="img-fallback">🎒</span>
+      </div>
+      <div class="info">
+        <h3>Mochila del Club</h3>
+        <p>25L · Logo lateral</p>
+        <div class="precio">49 €</div>
+      </div>
+    </article>
+
+    <article class="tienda-card">
+      <div class="img-wrap">
+        <img src="bufanda.jpg" alt="Bufanda de afición oficial Real Madrid temporada 2025/26" onerror="this.classList.add('error-img')">
+        <span class="img-fallback">🏅</span>
+      </div>
+      <div class="info">
+        <h3>Bufanda Afición</h3>
+        <p>Temporada 2025/26</p>
+        <div class="precio">24 €</div>
+      </div>
+    </article>
+
+  </div>
+</main>
+
+<footer>
+  <span>Real Madrid Club de Fútbol — Fundado en 1902</span>
+  <span>TEMPORADA 2025/26</span>
+</footer>
+
+<script>
+  function tick() {
+    const t = new Date().toLocaleTimeString('es-ES', { hour:'2-digit', minute:'2-digit', second:'2-digit' });
+    document.getElementById('clock').textContent = t;
+  }
+  tick(); setInterval(tick, 1000);
+</script>
+
+</body>
+</html>
