@@ -300,15 +300,33 @@
 <script>
   function reservar(e) {
     e.preventDefault();
-    e.target.style.display = 'none';
-    document.getElementById('aviso').style.display = 'block';
+
+    const nombre = document.getElementById('nombre').value;
+    const partido = document.getElementById('partido').value;
+    const zona = document.querySelector('input[name="zona"]:checked').value;
+
+    const aviso = document.getElementById('aviso');
+
+    aviso.style.display = 'block';
+
+    aviso.innerHTML =
+      '✅ Reserva realizada por ' + nombre +
+      '<br>Partido: ' + partido +
+      '<br>Zona: ' + zona;
   }
 
   function tick() {
-    const t = new Date().toLocaleTimeString('es-ES', { hour:'2-digit', minute:'2-digit', second:'2-digit' });
+    const t = new Date().toLocaleTimeString('es-ES', {
+      hour:'2-digit',
+      minute:'2-digit',
+      second:'2-digit'
+    });
+
     document.getElementById('clock').textContent = t;
   }
-  tick(); setInterval(tick, 1000);
+
+  tick();
+  setInterval(tick, 1000);
 </script>
 
 </body>
